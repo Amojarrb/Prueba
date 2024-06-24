@@ -1,9 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Hola</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contenido de URL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
-    hola
+    <h1>Recuperar Contenido de URL</h1>
+    <p>Ingrese una URL para recuperar su contenido:</p>
+    <input type="text" id="urlInput" placeholder="Ingrese la URL aquí">
+    <button onclick="fetchContent()">Recuperar Contenido</button>
+    <pre id="contentOutput"></pre>
+
+    <script>
+        async function fetchContent() {
+            const url = document.getElementById('urlInput').value;
+            const output = document.getElementById('contentOutput');
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    const text = await response.text();
+                    output.textContent = text;
+                } else {
+                    output.textContent = `Error al recuperar la URL. Código de estado: ${response.status}`;
+                }
+            } catch (error) {
+                output.textContent = `Error al hacer la solicitud: ${error.message}`;
+            }
+        }
+    </script>
 </body>
 </html>
