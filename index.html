@@ -8,6 +8,7 @@
 <body>
     <h1>Juegos de Usuario en Roblox</h1>
     <div id="games-list"></div>
+    <p id="user-id"></p> <!-- Nuevo elemento para mostrar el ID del usuario -->
 
     <script>
         // Función para obtener y mostrar los juegos del usuario en Roblox
@@ -35,6 +36,10 @@
                 } else {
                     gamesListElement.innerHTML = 'No se encontraron juegos para este usuario.';
                 }
+
+                // Mostrar el ID del usuario en la página
+                const userIdElement = document.getElementById('user-id');
+                userIdElement.textContent = `ID de usuario: ${userId}`;
             } catch (error) {
                 console.error('Error al obtener juegos:', error);
                 const gamesListElement = document.getElementById('games-list');
